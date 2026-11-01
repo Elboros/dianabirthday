@@ -180,14 +180,33 @@
   }
   @keyframes hugPulse { 0%,100% { transform: scale(1);} 50% { transform: scale(1.06);} }
 
-  /* Маленькие телефоны (iPhone SE и т.п.): чуть больше места под текст */
-  @media (orientation: portrait) and (max-width: 380px) {
-    .plate { top: 17%; height: 72%; left: 18%; width: 61%; padding: 7% 5.5% 5%; }
-    .plate h1 { font-size: 22px; }
-    .plate .msg { font-size: 12.5px; line-height: 1.3; margin-bottom: .5em; }
-    .plate .ps { font-size: 12px; }
-    .plate .sign { font-size: 19px; }
-    .hug-btn { margin-top: 8px; font-size: 13px; }
+  /* Телефоны в портрете: карточка шире белого листа, цветы остаются рамкой вокруг */
+  @media (orientation: portrait) and (max-width: 640px) {
+    .frame {
+      width: 100vw; height: var(--vh); aspect-ratio: auto;
+      background-size: cover; background-position: 49% 52%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .plate {
+      position: relative; left: auto; top: auto;
+      width: min(88vw, 460px); height: auto; max-height: calc(var(--vh) - 64px);
+      padding: 30px 22px 20px;
+    }
+    .plate-scroll { flex: 0 1 auto; min-height: 0; }
+    .plate h1 { font-size: 30px; }
+    .plate .msg { font-size: 17.5px; line-height: 1.38; margin-bottom: .6em; }
+    .plate .ps { font-size: 16px; }
+    .plate .sign { font-size: 27px; margin-top: .2em; }
+    .hug-btn { font-size: 16px; margin-top: 14px; }
+  }
+  /* Совсем маленькие экраны (iPhone SE 1-го поколения и т.п.) */
+  @media (orientation: portrait) and (max-width: 360px) {
+    .plate { width: 92vw; max-height: calc(var(--vh) - 32px); padding: 24px 16px 16px; }
+    .plate h1 { font-size: 25px; }
+    .plate .msg { font-size: 15.5px; line-height: 1.32; }
+    .plate .ps { font-size: 14.5px; }
+    .plate .sign { font-size: 23px; }
+    .hug-btn { font-size: 14px; margin-top: 10px; }
   }
 
   /* Узкий альбомный экран (телефон боком): карточка по центру поверх размытого фона */
