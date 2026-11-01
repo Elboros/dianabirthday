@@ -86,40 +86,13 @@
   @keyframes beat { 0%,100% { transform: translate(-50%,-50%) scale(1);} 50% { transform: translate(-50%,-50%) scale(1.15);} }
   @keyframes pulse { 0%,100% { opacity: .45;} 50% { opacity: 1;} }
 
-  /* ---------- Экран 1: вопрос ---------- */
-  #ask {
-    background: radial-gradient(circle at 50% 30%, #fff 0%, #fde6ec 55%, #f7cbd7 100%);
-    padding: 24px;
-  }
-  .ask-box { text-align: center; max-width: 560px; width: 100%; position: relative; z-index: 2; }
-  .ask-emoji {
-    font-size: clamp(72px, 22vw, 110px); line-height: 1;
-    display: inline-block; animation: float 3s ease-in-out infinite;
-  }
-  .ask-title {
-    font-family: 'Marck Script', cursive; color: var(--rose-dark);
-    font-size: clamp(36px, 10vw, 58px); line-height: 1.15; margin: 18px 0 8px;
-  }
-  .ask-sub { color: #a0687a; font-size: clamp(14px, 4vw, 17px); min-height: 1.5em; margin-bottom: 30px; transition: opacity .3s; }
-  .btns { display: flex; justify-content: center; align-items: center; gap: 22px; min-height: 70px; flex-wrap: wrap; }
   .btn {
     font-family: 'Nunito', sans-serif; font-weight: 800;
     border: none; border-radius: 999px; cursor: pointer;
     padding: 14px 34px; font-size: 18px;
-    transition: transform .25s ease, box-shadow .25s ease, font-size .3s ease, padding .3s ease;
+    transition: transform .25s ease, box-shadow .25s ease;
     touch-action: manipulation;
   }
-  #yesBtn {
-    background: linear-gradient(135deg, #ff8fab, var(--rose-dark));
-    color: #fff; box-shadow: 0 10px 24px rgba(194, 69, 107, .35);
-    position: relative; z-index: 3;
-  }
-  #yesBtn:hover { transform: translateY(-2px) scale(1.04); }
-  #noBtn {
-    background: #fff; color: #a0687a; box-shadow: 0 6px 16px rgba(0,0,0,.08);
-    z-index: 4; white-space: nowrap;
-  }
-  #noBtn.runaway { position: fixed; transition: left .25s ease, top .25s ease, transform .25s ease; }
 
   /* ---------- Экран 2: поздравление ---------- */
   #card { background: #f6e6ea; overflow: hidden; }
@@ -207,6 +180,16 @@
   }
   @keyframes hugPulse { 0%,100% { transform: scale(1);} 50% { transform: scale(1.06);} }
 
+  /* Маленькие телефоны (iPhone SE и т.п.): чуть больше места под текст */
+  @media (orientation: portrait) and (max-width: 380px) {
+    .plate { top: 17%; height: 72%; left: 18%; width: 61%; padding: 7% 5.5% 5%; }
+    .plate h1 { font-size: 22px; }
+    .plate .msg { font-size: 12.5px; line-height: 1.3; margin-bottom: .5em; }
+    .plate .ps { font-size: 12px; }
+    .plate .sign { font-size: 19px; }
+    .hug-btn { margin-top: 8px; font-size: 13px; }
+  }
+
   /* Узкий альбомный экран (телефон боком): карточка по центру поверх размытого фона */
   @media (orientation: landscape) and (max-height: 520px) {
     .frame { width: 100vw; height: var(--vh); aspect-ratio: auto; background: none; box-shadow: none; }
@@ -284,35 +267,21 @@
   <div class="intro-hint">нажми, чтобы открыть ✨</div>
 </section>
 
-<!-- Экран 1: вопрос -->
-<section class="screen" id="ask">
-  <div class="ask-box">
-    <div class="ask-emoji" id="askEmoji">🥺</div>
-    <h2 class="ask-title">Пойдёшь со мной на&nbsp;свидание?</h2>
-    <p class="ask-sub" id="askSub">ответ «нет» не принимается, но попробовать можешь 😌</p>
-    <div class="btns">
-      <button class="btn" id="yesBtn">Да 💖</button>
-      <button class="btn" id="noBtn">Нет</button>
-    </div>
-  </div>
-</section>
-
 <!-- Экран 2: поздравление -->
 <section class="screen" id="card">
   <div class="bg-blur"></div>
   <div class="frame">
     <article class="plate" id="plate">
       <div class="plate-scroll">
-        <h1>С&nbsp;Днём Рождения, дорогая Диана!</h1>
-        <div class="sub">Самой доброй, невероятной и самой яркой звёздочке ✨</div>
+        <h1>🎉 Дорогая Диана, с&nbsp;Днём Рождения!!! 🎉</h1>
         <p class="msg">
-          Поздравляю тебя с твоим днём! Желаю, чтобы каждый твой день был наполнен смехом,
-          вдохновением и моментами, от которых захватывает дух. Пусть все твои самые смелые
-          мечты сбываются, а рядом всегда будут те, кто тебя любит и поддерживает.
-          Ты заслуживаешь всего самого прекрасного в этом мире. Спасибо, что ты есть!
+          Пусть будущее принесёт тебе только тепло, спокойствие и людей, которые будут любить тебя
+          просто за то, что ты есть. Ты заслуживаешь быть самой счастливой, отдохнувшей и любимой.
         </p>
-        <p class="ps">P.S. Свидание засчитано — отвертеться уже не получится 😉</p>
-        <div class="sign">Юра</div>
+        <p class="msg">Береги себя и не ломай ничего (ни ноги, ни нервы) 😉</p>
+        <p class="msg">Спасибо, что скрашиваешь мои дни своими кружочками. Ты чудо.</p>
+        <p class="ps">С нетерпением жду встречи.</p>
+        <div class="sign">Твой Юрчик 💖</div>
       </div>
       <button class="btn hug-btn" id="hugBtn">ОБНИМАЮ 🤗</button>
     </article>
@@ -335,7 +304,7 @@
 <script>
 (() => {
   const $ = (id) => document.getElementById(id);
-  const screens = { intro: $('intro'), ask: $('ask'), card: $('card') };
+  const screens = { intro: $('intro'), card: $('card') };
   const show = (name) => Object.entries(screens).forEach(([k, el]) => el.classList.toggle('active', k === name));
 
   /* ---------- Тост ---------- */
@@ -441,114 +410,28 @@
     }, 380);
   }
 
-  /* ---------- Экран 0 → 1 ---------- */
+  /* ---------- Конверт → поздравление ---------- */
   let opened = false;
   function openLetter() {
     if (opened) return; opened = true;
     playMusic();
-    show('ask');
+    burst(innerWidth / 2, innerHeight * .45, 160);
+    show('card');
+    setTimeout(() => {
+      $('plate').classList.add('drop');
+      setTimeout(() => { burst(innerWidth * .25, innerHeight * .3, 90); burst(innerWidth * .75, innerHeight * .3, 90); }, 900);
+      startPetals();
+    }, 600);
   }
   screens.intro.addEventListener('click', openLetter);
   screens.intro.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') openLetter(); });
-
-  /* ---------- Убегающая кнопка «Нет» ---------- */
-  const noBtn = $('noBtn'), yesBtn = $('yesBtn');
-  const phrases = [
-    'Точно нет?', 'Подумай ещё 🥺', 'Не-а, мимо 😝', 'Ты промахнулась', 'Кнопка устала бегать',
-    'Юра будет плакать 😢', 'Последний шанс!', 'Ну пожааалуйста 🙏', 'Я быстрее 🏃‍♂️', 'Нет — это не ответ',
-    'Попробуй «Да» 👉', 'Сдавайся 😌'
-  ];
-  const subs = [
-    'ой, кнопка убежала 🙈', 'она сама, честно', 'кажется, «нет» сегодня не работает',
-    'смотри, какая большая кнопка «Да» 👀', 'вселенная намекает…', 'ну правда, жми «Да» 💖'
-  ];
-  const emojis = ['🥺', '😳', '🙈', '😢', '🥹', '😭', '🫣', '🥰'];
-  let tries = 0, lastMove = 0;
-
-  function runAway(px, py) {
-    const now = Date.now();
-    if (now - lastMove < 120) return;
-    lastMove = now;
-    tries++;
-    const r = noBtn.getBoundingClientRect();
-    if (!noBtn.classList.contains('runaway')) {
-      // фиксируем текущее положение, чтобы прыжок был плавным
-      noBtn.style.left = r.left + 'px'; noBtn.style.top = r.top + 'px';
-      noBtn.classList.add('runaway');
-      void noBtn.offsetWidth;
-    }
-    noBtn.textContent = phrases[(tries - 1) % phrases.length];
-    const w = noBtn.offsetWidth, h = noBtn.offsetHeight, pad = 12;
-    const maxX = innerWidth - w - pad, maxY = innerHeight - h - pad;
-    const yr = yesBtn.getBoundingClientRect();
-    let x, y, guard = 0;
-    do {
-      x = rnd(pad, Math.max(pad, maxX)); y = rnd(pad, Math.max(pad, maxY)); guard++;
-    } while (guard < 40 && (
-      Math.hypot(x + w / 2 - (px ?? r.left), y + h / 2 - (py ?? r.top)) < 160 ||           // подальше от пальца/курсора
-      (x < yr.right + 10 && x + w > yr.left - 10 && y < yr.bottom + 10 && y + h > yr.top - 10) // не налезать на «Да»
-    ));
-    noBtn.style.left = x + 'px'; noBtn.style.top = y + 'px';
-    noBtn.style.transform = `rotate(${rnd(-12, 12)}deg) scale(${Math.max(.6, 1 - tries * .03)})`;
-
-    // «Да» растёт
-    const fs = Math.min(18 + tries * 2.2, 40);
-    yesBtn.style.fontSize = fs + 'px';
-    yesBtn.style.padding = `${14 + tries}px ${34 + tries * 2.5}px`;
-
-    $('askEmoji').textContent = emojis[tries % emojis.length];
-    if (tries % 2 === 0) $('askSub').textContent = subs[(tries / 2 - 1) % subs.length];
-  }
-
-  // Компьютер: убегает, когда курсор подкрадывается
-  document.addEventListener('pointermove', (e) => {
-    if (!screens.ask.classList.contains('active') || e.pointerType === 'touch') return;
-    const r = noBtn.getBoundingClientRect();
-    const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
-    const near = Math.abs(e.clientX - cx) < r.width / 2 + 70 && Math.abs(e.clientY - cy) < r.height / 2 + 60;
-    if (near) runAway(e.clientX, e.clientY);
-  });
-  // Телефон: убегает от касания
-  noBtn.addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    const t = e.touches[0];
-    runAway(t.clientX, t.clientY);
-  }, { passive: false });
-  noBtn.addEventListener('pointerdown', (e) => { if (e.pointerType !== 'touch') { e.preventDefault(); runAway(e.clientX, e.clientY); } });
-  // Если всё-таки как-то нажала (клавиатурой, например)
-  noBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    toast('Ошибка 404: ответ «нет» не найден 🤷‍♀️ Засчитываю как «да»!', 2600);
-    setTimeout(sayYes, 1200);
-  });
-
-  /* ---------- «Да!» ---------- */
-  let said = false;
-  function sayYes() {
-    if (said) return; said = true;
-    const r = yesBtn.getBoundingClientRect();
-    burst(r.left + r.width / 2, r.top + r.height / 2, 180);
-    $('askEmoji').textContent = '🥰';
-    $('askSub').textContent = tries ? `Ура!!! (и всего-то ${tries} ${plural(tries, ['попытка', 'попытки', 'попыток'])} сбежать 😄)` : 'Ура!!! Даже не пыталась сбежать 😍';
-    noBtn.style.display = 'none';
-    setTimeout(() => {
-      show('card');
-      setTimeout(() => {
-        $('plate').classList.add('drop');
-        setTimeout(() => { burst(innerWidth * .25, innerHeight * .3, 90); burst(innerWidth * .75, innerHeight * .3, 90); }, 900);
-        startPetals();
-      }, 500);
-    }, 1800);
-  }
-  yesBtn.addEventListener('click', sayYes);
-  function plural(n, f) { const m10 = n % 10, m100 = n % 100; return f[m10 === 1 && m100 !== 11 ? 0 : m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20) ? 1 : 2]; }
 
   /* ---------- ОБНИМАЮ → фото ---------- */
   const photo = $('photo');
   $('hugBtn').addEventListener('click', () => {
     photo.classList.add('active');
     heartsUp(photoFx, 45);
-    toast('Обнимашки доставлены 🤗', 1800);
+    setTimeout(() => toast('Обнимашки доставлены 🤗', 5000), 700);
   });
   photo.addEventListener('click', () => photo.classList.remove('active'));
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') photo.classList.remove('active'); });
